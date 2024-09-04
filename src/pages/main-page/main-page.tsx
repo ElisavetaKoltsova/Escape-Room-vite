@@ -4,6 +4,7 @@ import Header from '../../components/header/header';
 import FiltersForm from '../../components/filters-form/filters-form';
 
 function MainPage(): JSX.Element {
+  //const quests = useAppSelector(getQuests);
   return (
     <div className="wrapper">
       <Header />

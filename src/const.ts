@@ -24,3 +24,11 @@ export enum AppRoute {
   MyQuests = '/my-quests',
   Contacts = '/contacts'
 }
+
+export enum APIRoute {
+  Quests = '/quest'
+}
+
+export enum NameSpace {
+  Quests = 'QUESTS'
+}

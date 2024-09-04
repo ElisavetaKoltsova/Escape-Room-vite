@@ -1,6 +1,6 @@
 import { HelmetProvider } from 'react-helmet-async';
 import MainPage from '../../pages/main-page/main-page';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import QuestPage from '../../pages/quest-page/quest-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
@@ -12,58 +12,55 @@ import BookingPage from '../../pages/booking-page/booking-page';
 function App(): JSX.Element {
   return (
     <HelmetProvider>
-      <BrowserRouter>
-        <Routes>
+      <Routes>
+        <Route
+          path={AppRoute.Root}
+          element={
+            <MainPage />
+          }
+        />
+        <Route
+          path={AppRoute.Login}
+          element={
+            <LoginPage />
+          }
+        />
+        <Route
+          path={AppRoute.Quest}
+        >
           <Route
-            path={AppRoute.Root}
+            path={AppRoute.QuestId}
             element={
-              <MainPage />
+              <QuestPage />
             }
-          />
-          <Route
-            path={AppRoute.Login}
-            element={
-              <LoginPage />
-            }
-          />
-          <Route
-            path={AppRoute.Quest}
           >
             <Route
-              path={AppRoute.QuestId}
+              path={AppRoute.Booking}
               element={
-                <QuestPage />
+                <BookingPage />
               }
-            >
-              <Route
-                path={AppRoute.Booking}
-                element={
-                  <BookingPage />
-                }
-              />
-            </Route>
+            />
           </Route>
-          <Route
-            path={AppRoute.MyQuests}
-            element={
-              <MyQuestPage />
-            }
-          />
-          <Route
-            path={AppRoute.Contacts}
-            element={
-              <ContactsPage />
-            }
-          />
-          <Route
-            path='*'
-            element={
-              <NotFoundPage />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-
+        </Route>
+        <Route
+          path={AppRoute.MyQuests}
+          element={
+            <MyQuestPage />
+          }
+        />
+        <Route
+          path={AppRoute.Contacts}
+          element={
+            <ContactsPage />
+          }
+        />
+        <Route
+          path='*'
+          element={
+            <NotFoundPage />
+          }
+        />
+      </Routes>
     </HelmetProvider>
   );
 }
