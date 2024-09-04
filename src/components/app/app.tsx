@@ -4,6 +4,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import QuestPage from '../../pages/quest-page/quest-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import ContactsPage from '../../pages/contacts-page/contacts-page';
+import MyQuestPage from '../../pages/my-quests-page/my-quests-page';
+import LoginPage from '../../pages/login-page/login-page';
+import BookingPage from '../../pages/booking-page/booking-page';
 
 function App(): JSX.Element {
   return (
@@ -17,6 +21,12 @@ function App(): JSX.Element {
             }
           />
           <Route
+            path={AppRoute.Login}
+            element={
+              <LoginPage />
+            }
+          />
+          <Route
             path={AppRoute.Quest}
           >
             <Route
@@ -27,9 +37,24 @@ function App(): JSX.Element {
             >
               <Route
                 path={AppRoute.Booking}
+                element={
+                  <BookingPage />
+                }
               />
             </Route>
           </Route>
+          <Route
+            path={AppRoute.MyQuests}
+            element={
+              <MyQuestPage />
+            }
+          />
+          <Route
+            path={AppRoute.Contacts}
+            element={
+              <ContactsPage />
+            }
+          />
           <Route
             path='*'
             element={
