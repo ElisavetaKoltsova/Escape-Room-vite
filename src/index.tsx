@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { store } from './store';
-import { checkAuthAction, fetchQuestsAction } from './store/api-actions';
+import { fetchQuestsAction } from './store/api-actions';
 import { Provider } from 'react-redux';
 import HistoryRouter from './components/history-router/history-router';
 import browserHistory from './browser-history';
