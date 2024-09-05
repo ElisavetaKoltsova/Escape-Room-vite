@@ -1,8 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Footer from '../../components/footer/footer';
 import { AppRoute } from '../../const';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchCurrentQuestAction } from '../../store/api-actions';
+import { getCurrentQuest } from '../../store/quests-data/selector';
 
 function QuestPage(): JSX.Element {
+  const {id: currentId} = useParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if(currentId) {
+      dispatch(fetchCurrentQuestAction(currentId));
+    }
+  }, [currentId, dispatch]);
+
+  const currentQuest = useAppSelector(getCurrentQuest);
+  console.log(currentQuest);
+
   return (
     <div className="wrapper">
       <header className="header">

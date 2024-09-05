@@ -1,9 +1,17 @@
+import { AuthorizationStatus } from '../const.js';
 import {store} from '../store/index.js';
-import { Quest } from './quest.js';
+import { CurrentQuest, Quest } from './quest.js';
+import { UserData } from './user-data.js';
 
 export type QuestsData = {
   quests: Quest[];
-  isQuestDataLoading: boolean;
+  currentQuest: CurrentQuest | null;
+  isQuestsDataLoading: boolean;
+}
+
+export type UserProcess = {
+  authorizationStatus: AuthorizationStatus;
+  user: UserData | null;
 }
 
 export type State = ReturnType<typeof store.getState>;

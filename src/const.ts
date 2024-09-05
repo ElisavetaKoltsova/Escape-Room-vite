@@ -26,9 +26,32 @@ export enum AppRoute {
 }
 
 export enum APIRoute {
-  Quests = '/quest'
+  Quests = '/quest',
+  Login = '/login',
+  Logout = '/logout'
 }
 
 export enum NameSpace {
-  Quests = 'QUESTS'
+  Quests = 'QUESTS',
+  User = 'USER'
+}
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN'
+}
+
+export enum Level {
+  Easy = 'easy',
+  Medium = 'medium',
+  Hard = 'hard'
+}
+
+export enum Type {
+  Adventure = 'adventure',
+  Horror = 'horror',
+  Mystic = 'mystic',
+  Detective = 'detective',
+  SciFi = 'sci-fi'
 }

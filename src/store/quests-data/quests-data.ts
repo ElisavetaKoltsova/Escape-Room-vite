@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { QuestsData } from '../../types/state';
 import { NameSpace } from '../../const';
-import { fetchQuestsAction } from '../api-actions';
+import { fetchCurrentQuestAction, fetchQuestsAction } from '../api-actions';
 
 const initialState: QuestsData = {
   quests: [],
-  isQuestDataLoading: false
+  currentQuest: null,
+  isQuestsDataLoading: false
 };
 
 export const questsData = createSlice({
@@ -15,11 +16,18 @@ export const questsData = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchQuestsAction.pending, (state) => {
-        state.isQuestDataLoading = true;
+        state.isQuestsDataLoading = true;
       })
       .addCase(fetchQuestsAction.fulfilled, (state, action) => {
         state.quests = action.payload;
-        state.isQuestDataLoading = false;
+        state.isQuestsDataLoading = false;
+      })
+      .addCase(fetchCurrentQuestAction.pending, (state) => {
+        state.isQuestsDataLoading = true;
+      })
+      .addCase(fetchCurrentQuestAction.fulfilled, (state, action) => {
+        state.currentQuest = action.payload;
+        state.isQuestsDataLoading = false;
       });
   }
 });

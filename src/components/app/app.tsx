@@ -8,15 +8,32 @@ import ContactsPage from '../../pages/contacts-page/contacts-page';
 import MyQuestPage from '../../pages/my-quests-page/my-quests-page';
 import LoginPage from '../../pages/login-page/login-page';
 import BookingPage from '../../pages/booking-page/booking-page';
+import { Quest } from '../../types/quest';
+import { useAppSelector } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { useState } from 'react';
 
 function App(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  const [currentQuest, setCurrentQuest] = useState<Quest>({} as Quest);
+
+  const handleQuestClick = (quest: Quest) => {
+    setCurrentQuest({
+      ...currentQuest,
+      id: quest.id
+    });
+  };
+
   return (
     <HelmetProvider>
       <Routes>
         <Route
           path={AppRoute.Root}
           element={
-            <MainPage />
+            <MainPage
+              onQuestClick={handleQuestClick}
+            />
           }
         />
         <Route

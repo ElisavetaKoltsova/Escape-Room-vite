@@ -1,7 +1,11 @@
-import { quests } from '../../mock/quest';
+import { Quest } from '../../types/quest';
 import QuestCardItem from '../quest-card-item/quest-card-item';
 
-function QuestCardList(): JSX.Element {
+type QuestCardListProps = {
+  quests: Quest[];
+}
+
+function QuestCardList({quests}: QuestCardListProps): JSX.Element {
   return (
     <div className="cards-grid">
       {quests.map((quest) => (
