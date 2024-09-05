@@ -5,6 +5,7 @@ import FiltersForm from '../../components/filters-form/filters-form';
 import { useAppSelector } from '../../hooks';
 import { getQuests, getQuestsDataLoadingStatus } from '../../store/quests-data/selector';
 import Loader from '../../components/loader/loader';
+import { AppRoute } from '../../const';
 
 // type MainPageProps = {
 //   onQuestClick: QuestClick;
@@ -16,7 +17,7 @@ function MainPage(): JSX.Element {
 
   return (
     <div className="wrapper">
-      <Header />
+      <Header activeMenuItem={AppRoute.Root}/>
       <main className="page-content">
         <div className="container">
           <div className="page-content__title-wrapper">
