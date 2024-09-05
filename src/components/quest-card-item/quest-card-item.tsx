@@ -7,13 +7,13 @@ type QuestCardItemProps = {
 }
 
 function QuestCardItem({quest}: QuestCardItemProps): JSX.Element {
-  const {id, title, previewImgWebp, peopleMinMax, level} = quest;
+  const {id, title, previewImgWebp, previewImg, peopleMinMax, level} = quest;
   return (
     <div className="quest-card">
       <div className="quest-card__img">
         <picture>
           <source type="image/webp" srcSet={`${previewImgWebp}, img/content/crypt/crypt-size-s@2x.webp 2x`} />
-          <img src="img/content/crypt/crypt-size-s.jpg" srcSet="img/content/crypt/crypt-size-s@2x.jpg 2x" width="344" height="232" alt={title} />
+          <img src={previewImg} srcSet="img/content/crypt/crypt-size-s@2x.jpg 2x" width="344" height="232" alt={title} />
         </picture>
       </div>
       <div className="quest-card__content">
