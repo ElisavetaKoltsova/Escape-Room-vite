@@ -4,8 +4,9 @@ import { AppRoute } from '../../const';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchCurrentQuestAction } from '../../store/api-actions';
-import { getCurrentQuest } from '../../store/quests-data/selector';
+import { getCurrentQuest, getQuestsDataLoadingStatus } from '../../store/quests-data/selector';
 import NotFoundPage from '../not-found-page/not-found-page';
+import Loader from '../../components/loader/loader';
 
 function QuestPage(): JSX.Element {
   const {id: currentId} = useParams();
@@ -18,6 +19,11 @@ function QuestPage(): JSX.Element {
   }, [currentId, dispatch]);
 
   const currentQuest = useAppSelector(getCurrentQuest);
+  const isQuestsDataLoading = useAppSelector(getQuestsDataLoadingStatus);
+
+  if (isQuestsDataLoading) {
+    return <Loader />;
+  }
 
   if (currentQuest) {
     const {
@@ -30,6 +36,7 @@ function QuestPage(): JSX.Element {
       level,
       peopleMinMax
     } = currentQuest;
+
     return (
       <div className="wrapper">
         <header className="header">

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import HistoryRouter from './components/history-router/history-router';
 import browserHistory from './browser-history';
 
-store.dispatch(checkAuthAction());
+// store.dispatch(checkAuthAction());
 store.dispatch(fetchQuestsAction());
 
 const root = ReactDOM.createRoot(
