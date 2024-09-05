@@ -1,3 +1,8 @@
+export const UrlMarkers = {
+  URL_MARKER_DEFAULT: '../public/img/svg/pin-default.svg',
+  URL_MARKER_CURRENT: '../public/img/svg/pin-active.svg'
+};
+
 export const Filters = {
   THEMES: {
     'all-quests': 'Все квесты',
@@ -12,6 +17,16 @@ export const Filters = {
     'easy': 'Лёгкий',
     'middle': 'Средний',
     'hard': 'Сложный'
+  }
+};
+
+export const Coordinates = {
+  MAIN_ADDRESS: {
+    center: {
+      latitude: 59.968322,
+      longitude: 30.317359
+    },
+    zoom: 40
   }
 };
 

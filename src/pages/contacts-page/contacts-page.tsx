@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/footer';
-import { AppRoute } from '../../const';
+import { AppRoute, Coordinates } from '../../const';
+import Map from '../../components/map/map';
 
 function ContactsPage(): JSX.Element {
   return (
@@ -68,7 +69,9 @@ function ContactsPage(): JSX.Element {
             </dl>
             <div className="contacts__map">
               <div className="map">
-                <div className="map__container"></div>
+                <div className="map__container">
+                  <Map coordinate={Coordinates.MAIN_ADDRESS}/>
+                </div>
               </div>
             </div>
           </div>
