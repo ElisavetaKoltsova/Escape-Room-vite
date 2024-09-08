@@ -38,14 +38,13 @@ function App(): JSX.Element {
             element={
               <QuestPage />
             }
-          >
-            <Route
-              path={AppRoute.Booking}
-              element={
-                <BookingPage />
-              }
-            />
-          </Route>
+          />
+          <Route
+            path={`${AppRoute.QuestId}/${AppRoute.Booking}`}
+            element={
+              <BookingPage />
+            }
+          />
         </Route>
         <Route
           path={AppRoute.MyQuests}

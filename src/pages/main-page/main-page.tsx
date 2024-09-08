@@ -7,10 +7,6 @@ import { getQuests, getQuestsDataLoadingStatus } from '../../store/quests-data/s
 import Loader from '../../components/loader/loader';
 import { AppRoute } from '../../const';
 
-// type MainPageProps = {
-//   onQuestClick: QuestClick;
-// }
-
 function MainPage(): JSX.Element {
   const quests = useAppSelector(getQuests);
   const isQuestsDataLoading = useAppSelector(getQuestsDataLoadingStatus);
@@ -35,7 +31,6 @@ function MainPage(): JSX.Element {
               :
               <QuestCardList
                 quests={quests}
-                // onQuestClick={onQuestClick}
               />
           }
         </div>

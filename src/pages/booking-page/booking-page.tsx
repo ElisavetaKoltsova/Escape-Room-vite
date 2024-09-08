@@ -10,8 +10,8 @@ function BookingPage(): JSX.Element {
       <main className="page-content decorated-page">
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>
-            <source type="image/webp" srcSet="img/content/maniac/maniac-bg-size-m.webp, img/content/maniac/maniac-bg-size-m@2x.webp 2x" />
-            <img src="img/content/maniac/maniac-bg-size-m.jpg" srcSet="img/content/maniac/maniac-bg-size-m@2x.jpg 2x" width="1366" height="1959" alt="" />
+            <source type="image/webp" srcSet="/img/content/maniac/maniac-bg-size-m.webp, img/content/maniac/maniac-bg-size-m@2x.webp 2x" />
+            <img src="/img/content/maniac/maniac-bg-size-m.jpg" srcSet="img/content/maniac/maniac-bg-size-m@2x.jpg 2x" width="1366" height="1959" alt="" />
           </picture>
         </div>
         <div className="container container--size-s">
@@ -38,7 +38,7 @@ function BookingPage(): JSX.Element {
                     <input type="radio" id="today9h45m" name="date" required value="today9h45m" /><span className="custom-radio__label">9:45</span>
                   </label>
                   <label className="custom-radio booking-form__date">
-                    <input type="radio" id="today15h00m" name="date" checked required value="today15h00m" /><span className="custom-radio__label">15:00</span>
+                    <input type="radio" id="today15h00m" name="date" defaultChecked required value="today15h00m" /><span className="custom-radio__label">15:00</span>
                   </label>
                   <label className="custom-radio booking-form__date">
                     <input type="radio" id="today17h30m" name="date" required value="today17h30m" /><span className="custom-radio__label">17:30</span>
@@ -87,7 +87,7 @@ function BookingPage(): JSX.Element {
                 <input type="number" id="person" name="person" placeholder="Количество участников" required />
               </div>
               <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--children">
-                <input type="checkbox" id="children" name="children" checked />
+                <input type="checkbox" id="children" name="children" defaultChecked />
                 <span className="custom-checkbox__icon">
                   <svg width="20" height="17" aria-hidden="true">
                     <use xlinkHref="#icon-tick"></use>
