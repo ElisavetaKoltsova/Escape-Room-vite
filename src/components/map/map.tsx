@@ -7,33 +7,36 @@ import { UrlMarkers } from '../../const';
 
 type MapProps = {
   coordinate: Coordinate;
+  zoom?: number;
 }
 
-function Map({coordinate}: MapProps): JSX.Element {
+const DEFAULT_ZOOM = 13;
+
+function Map({coordinate, zoom}: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, coordinate);
+  const map = useMap(mapRef, coordinate, zoom ? zoom : DEFAULT_ZOOM);
 
   useEffect(() => {
     if (map) {
       map.setView([
-        coordinate.center.latitude,
-        coordinate.center.longitude
-      ], coordinate.zoom);
+        coordinate.coords[0],
+        coordinate.coords[1]
+      ], zoom ? zoom : DEFAULT_ZOOM);
 
       const defaultCustomIcon = new Icon({
         iconUrl: UrlMarkers.URL_MARKER_DEFAULT
       });
 
       const marker = new Marker({
-        lat: coordinate.center.latitude,
-        lng: coordinate.center.longitude
+        lat: coordinate.coords[0],
+        lng: coordinate.coords[1]
       });
 
       marker
         .setIcon(defaultCustomIcon)
         .addTo(map);
     }
-  }, [map, coordinate]);
+  }, [map, coordinate, zoom]);
 
   return (
     <div

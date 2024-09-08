@@ -1,11 +1,12 @@
 import { AuthorizationStatus } from '../const.js';
 import {store} from '../store/index.js';
-import { CurrentQuest, Quest } from './quest.js';
+import { BookingQuest, CurrentQuest, Quest } from './quest.js';
 import { UserData } from './user-data.js';
 
 export type QuestsData = {
   quests: Quest[];
   currentQuest: CurrentQuest | null;
+  bookingQuest: BookingQuest | null;
   isQuestsDataLoading: boolean;
 }
 

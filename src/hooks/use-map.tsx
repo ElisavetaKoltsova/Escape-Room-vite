@@ -2,7 +2,7 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { Map, TileLayer } from 'leaflet';
 import { Coordinate } from '../types/coordinate';
 
-function useMap(mapRef: MutableRefObject<HTMLElement | null>, coordinate: Coordinate): Map | null {
+function useMap(mapRef: MutableRefObject<HTMLElement | null>, coordinate: Coordinate, zoom: number): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
 
@@ -10,10 +10,10 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, coordinate: Coordi
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: coordinate.center.latitude,
-          lng: coordinate.center.longitude
+          lat: coordinate.coords[0],
+          lng: coordinate.coords[1]
         },
-        zoom: coordinate.zoom
+        zoom: zoom
       });
 
       const layer = new TileLayer(
@@ -29,7 +29,7 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, coordinate: Coordi
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [coordinate, mapRef]);
+  }, [coordinate, mapRef, zoom]);
 
   return map;
 }

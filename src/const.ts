@@ -1,6 +1,6 @@
 export const UrlMarkers = {
-  URL_MARKER_DEFAULT: '../public/img/svg/pin-default.svg',
-  URL_MARKER_CURRENT: '../public/img/svg/pin-active.svg'
+  URL_MARKER_DEFAULT: '/public/img/svg/pin-default.svg',
+  URL_MARKER_CURRENT: '/public/img/svg/pin-active.svg'
 };
 
 export const Filters = {
@@ -22,11 +22,11 @@ export const Filters = {
 
 export const Coordinates = {
   MAIN_ADDRESS: {
-    center: {
-      latitude: 59.968322,
-      longitude: 30.317359
-    },
-    zoom: 40
+    address: 'Main Address',
+    coords: [
+      59.968322,
+      30.317359
+    ]
   }
 };
 
@@ -43,7 +43,8 @@ export enum AppRoute {
 export enum APIRoute {
   Quests = '/quest',
   Login = '/login',
-  Logout = '/logout'
+  Logout = '/logout',
+  Booking = '/booking'
 }
 
 export enum NameSpace {

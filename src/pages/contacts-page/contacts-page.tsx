@@ -2,6 +2,9 @@ import Footer from '../../components/footer/footer';
 import { AppRoute, Coordinates } from '../../const';
 import Map from '../../components/map/map';
 import Header from '../../components/header/header';
+import { Coordinate } from '../../types/coordinate';
+
+const MAIN_ZOOM = 40;
 
 function ContactsPage(): JSX.Element {
   return (
@@ -48,7 +51,7 @@ function ContactsPage(): JSX.Element {
             <div className="contacts__map">
               <div className="map">
                 <div className="map__container">
-                  <Map coordinate={Coordinates.MAIN_ADDRESS}/>
+                  <Map coordinate={Coordinates.MAIN_ADDRESS as Coordinate} zoom={MAIN_ZOOM}/>
                 </div>
               </div>
             </div>
