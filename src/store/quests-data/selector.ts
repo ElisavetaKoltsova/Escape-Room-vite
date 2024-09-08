@@ -6,7 +6,9 @@ export const getQuests = (state: Pick<State, NameSpace.Quests>) =>
 export const getCurrentQuest = (state: Pick<State, NameSpace.Quests>) =>
   state[NameSpace.Quests].currentQuest;
 export const getBookingQuest = (state: Pick<State, NameSpace.Quests>) =>
-  state[NameSpace.Quests].bookingQuest;
+  state[NameSpace.Quests].bookingQuests;
+export const getSelectedBookingQuest = (state: Pick<State, NameSpace.Quests>) =>
+  state[NameSpace.Quests].selectedBookingQuest;
 
 export const getQuestsDataLoadingStatus = (state: Pick<State, NameSpace.Quests>) =>
   state[NameSpace.Quests].isQuestsDataLoading;

@@ -5,16 +5,16 @@ import Header from '../../components/header/header';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchBookingQuestAction, fetchCurrentQuestAction } from '../../store/api-actions';
-import { getBookingQuest, getCurrentQuest, getQuestsDataLoadingStatus } from '../../store/quests-data/selector';
+import { getBookingQuest, getCurrentQuest, getQuestsDataLoadingStatus, getSelectedBookingQuest } from '../../store/quests-data/selector';
 import Loader from '../../components/loader/loader';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Map from '../../components/map/map';
 import BookingForm from '../../components/booking-form/booking-form';
+import { setSelectedQuest } from '../../store/quests-data/quests-data';
 
 function BookingPage(): JSX.Element {
   const {id: currentId} = useParams();
   const dispatch = useAppDispatch();
-  //const select
 
   useEffect(() => {
     if (currentId) {
@@ -27,15 +27,21 @@ function BookingPage(): JSX.Element {
   const currentQuest = useAppSelector(getCurrentQuest);
   const isQuestDataLoading = useAppSelector(getQuestsDataLoadingStatus);
 
+  useEffect(() => {
+    dispatch(setSelectedQuest(bookingQuests[0]));
+  }, [bookingQuests, dispatch]);
+
+  const selectedBookingQuest = useAppSelector(getSelectedBookingQuest);
+
   if (isQuestDataLoading) {
     return <Loader />;
   }
 
-  if (bookingQuests.length !== 0 && currentQuest) {
+  if (bookingQuests.length !== 0 && currentQuest && selectedBookingQuest) {
     const {
       location,
       slots
-    } = bookingQuests[0];
+    } = selectedBookingQuest;
 
     return (
       <div className="wrapper">
@@ -57,7 +63,7 @@ function BookingPage(): JSX.Element {
               <div className="booking-map">
                 <div className="map">
                   <div className="map__container">
-                    <Map coordinate={location} places={bookingQuests} />
+                    <Map coordinate={location} places={bookingQuests} selectedPlace={selectedBookingQuest}/>
                   </div>
                 </div>
                 <p className="booking-map__address">Вы&nbsp;выбрали: {location.address}</p>

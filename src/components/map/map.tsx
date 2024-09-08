@@ -5,6 +5,8 @@ import 'leaflet/dist/leaflet.css';
 import { Icon, LatLng, layerGroup, Marker } from 'leaflet';
 import { UrlMarkers } from '../../const';
 import { BookingQuest } from '../../types/quest';
+import { useAppDispatch } from '../../hooks';
+import { setSelectedQuest } from '../../store/quests-data/quests-data';
 
 type MapProps = {
   places?: BookingQuest[];
@@ -18,6 +20,9 @@ const DEFAULT_ZOOM = 11;
 function Map({coordinate, places, selectedPlace, zoom}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, coordinate, zoom ? zoom : DEFAULT_ZOOM);
+
+  const dispatch = useAppDispatch();
+
   const markers: Marker[] = [];
 
   const defaultCustomIcon = new Icon({
@@ -35,6 +40,10 @@ function Map({coordinate, places, selectedPlace, zoom}: MapProps): JSX.Element {
       const markerLayer = layerGroup().addTo(map);
       if (places) {
         places.forEach((place) => {
+          const handleMarkerClick = () => {
+            dispatch(setSelectedQuest(place));
+          };
+
           const marker = new Marker({
             lat: place.location.coords[0],
             lng: place.location.coords[1]
@@ -46,7 +55,8 @@ function Map({coordinate, places, selectedPlace, zoom}: MapProps): JSX.Element {
                 ? currentCustomIcon
                 : defaultCustomIcon
             )
-            .addTo(map);
+            .addTo(map)
+            .on('click', handleMarkerClick);
 
           markers.push(marker);
         });

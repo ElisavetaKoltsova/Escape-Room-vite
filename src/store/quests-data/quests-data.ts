@@ -1,19 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { QuestsData } from '../../types/state';
 import { NameSpace } from '../../const';
 import { fetchBookingQuestAction, fetchCurrentQuestAction, fetchQuestsAction } from '../api-actions';
+import { BookingQuest } from '../../types/quest';
 
 const initialState: QuestsData = {
   quests: [],
   currentQuest: null,
-  bookingQuest: [],
+  bookingQuests: [],
+  selectedBookingQuest: undefined,
   isQuestsDataLoading: false
 };
 
 export const questsData = createSlice({
   name: NameSpace.Quests,
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedQuest: (state, action: PayloadAction<BookingQuest>) => {
+      state.selectedBookingQuest = action.payload;
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchQuestsAction.pending, (state) => {
@@ -34,8 +40,11 @@ export const questsData = createSlice({
         state.isQuestsDataLoading = true;
       })
       .addCase(fetchBookingQuestAction.fulfilled, (state, action) => {
-        state.bookingQuest = action.payload;
+        state.bookingQuests = action.payload;
+        state.selectedBookingQuest = action.payload[0];
         state.isQuestsDataLoading = false;
       });
   }
 });
+
+export const { setSelectedQuest } = questsData.actions;

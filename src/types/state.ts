@@ -6,7 +6,8 @@ import { UserData } from './user-data.js';
 export type QuestsData = {
   quests: Quest[];
   currentQuest: CurrentQuest | null;
-  bookingQuest: BookingQuest[];
+  bookingQuests: BookingQuest[];
+  selectedBookingQuest: BookingQuest | undefined;
   isQuestsDataLoading: boolean;
 }
 
