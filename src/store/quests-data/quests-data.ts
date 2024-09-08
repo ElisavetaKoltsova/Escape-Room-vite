@@ -6,7 +6,7 @@ import { fetchBookingQuestAction, fetchCurrentQuestAction, fetchQuestsAction } f
 const initialState: QuestsData = {
   quests: [],
   currentQuest: null,
-  bookingQuest: null,
+  bookingQuest: [],
   isQuestsDataLoading: false
 };
 

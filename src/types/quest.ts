@@ -30,10 +30,10 @@ export type Slots = {
   tomorrow: Slot[];
 }
 
-export type BookingQuest = [{
+export type BookingQuest = {
   id: string;
   location: Coordinate;
   slots: Slots;
-}];
+};
 
 export type QuestClick = (quest: Quest) => void;
