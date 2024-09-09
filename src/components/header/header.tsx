@@ -1,18 +1,13 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import Logo from '../logo/logo';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { logoutAction } from '../../store/api-actions';
+import LoginButton from '../login-button/login-button';
 
 type HeaderProps = {
   activeMenuItem: string;
 }
 
 function Header({activeMenuItem}: HeaderProps): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const dispatch = useAppDispatch();
-
   return (
     <header className="header">
       <div className="container container--size-l">
@@ -30,28 +25,11 @@ function Header({activeMenuItem}: HeaderProps): JSX.Element {
             </li>
           </ul>
         </nav>
-        {
-          authorizationStatus === AuthorizationStatus.Auth
-            ?
-            <div className="header__side-nav">
-              <Link
-                className="btn btn--accent header__side-item"
-                to="#"
-                onClick={(evt) => {
-                  evt.preventDefault();
-                  dispatch(logoutAction());
-                }}
-              >
-                Выйти
-              </Link>
-              <Link className="link header__side-item header__phone-link" to="tel:88003335599">8 (000) 111-11-11</Link>
-            </div>
-            :
-            <div className="header__side-nav">
-              <Link className="btn header__side-item header__login-btn" to={AppRoute.Login}>Вход</Link>
-              <Link className="link header__side-item header__phone-link" to="tel:88003335599">8 (000) 111-11-11</Link>
-            </div>
-        }
+        <div className="header__side-nav">
+          {activeMenuItem !== AppRoute.Login ? <LoginButton /> : ''}
+          <Link className="link header__side-item header__phone-link" to="tel:88003335599">8 (000) 111-11-11</Link>
+        </div>
+
       </div>
     </header>
   );
