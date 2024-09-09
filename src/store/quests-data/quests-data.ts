@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { QuestsData } from '../../types/state';
 import { NameSpace } from '../../const';
-import { fetchBookingQuestAction, fetchCurrentQuestAction, fetchQuestsAction, fetchReservationQuests } from '../api-actions';
+import { deleteReserveQuest, fetchBookingQuestAction, fetchCurrentQuestAction, fetchQuestsAction, fetchReservationQuests } from '../api-actions';
 import { BookingQuest } from '../../types/quest';
 
 const initialState: QuestsData = {
@@ -51,6 +51,9 @@ export const questsData = createSlice({
       .addCase(fetchReservationQuests.fulfilled, (state, action) => {
         state.reservationQuests = action.payload;
         state.isQuestsDataLoading = false;
+      })
+      .addCase(deleteReserveQuest.fulfilled, (state, action) => {
+        state.reservationQuests = action.payload;
       });
   }
 });

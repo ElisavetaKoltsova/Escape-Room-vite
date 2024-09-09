@@ -14,6 +14,7 @@ export const APIAction = {
   FETCH_BOOKING_QUEST: 'FETCH_BOOKING_QUEST',
   FETCH_RESERVATION_QUESTS: 'FETCH_RESERVATION_QUESTS',
   POST_RESERVE_QUEST: 'POST_RESERVE_QUEST',
+  DELETE_RESERVE_QUEST: 'DELETE_RESERVE_QUEST',
   CHECK_AUTH: 'CHECK_AUTH',
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT'
@@ -78,6 +79,19 @@ export const postReserveQuest = createAsyncThunk<void, ReserveQuestData, {
       placeId, date, time, contactPerson, phone, withChildren, peopleCount
     });
     dispatch(redirectToRoute(AppRoute.MyQuests));
+  }
+);
+
+export const deleteReserveQuest = createAsyncThunk<ReserveQuest[], string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  APIAction.DELETE_RESERVE_QUEST,
+  async (id, {extra: api}) => {
+    await api.delete(`${APIRoute.Reservation}/${id}`);
+    const { data } = await api.get<ReserveQuest[]>(APIRoute.Reservation);
+    return data;
   }
 );
 

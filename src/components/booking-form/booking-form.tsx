@@ -128,7 +128,7 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
               type="tel"
               id="tel"
               placeholder="Телефон"
-              required pattern="[0-9]{10,}"
+              required pattern="([\+]*[7-8]{1}\s?[\(]*9[0-9]{2}[\)]*\s?\d{3}[-]*\d{2}[-]*\d{2})"
               {...register('phone')}
             />
           </div>

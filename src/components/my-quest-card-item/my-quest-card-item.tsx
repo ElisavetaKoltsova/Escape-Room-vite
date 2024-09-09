@@ -1,3 +1,5 @@
+import { useAppDispatch } from '../../hooks';
+import { deleteReserveQuest } from '../../store/api-actions';
 import { ReserveQuest } from '../../types/quest';
 
 type MyQuestCardItemProps = {
@@ -5,12 +7,15 @@ type MyQuestCardItemProps = {
 }
 
 function MyQuestCardItem({reserveQuest}: MyQuestCardItemProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   const {
     quest,
     date,
     time,
     location,
-    peopleCount
+    peopleCount,
+    id
   } = reserveQuest;
 
   const {
@@ -23,6 +28,12 @@ function MyQuestCardItem({reserveQuest}: MyQuestCardItemProps): JSX.Element {
   const {
     address
   } = location;
+
+  const handleQuestCancelClick = () => {
+    if (id) {
+      dispatch(deleteReserveQuest(id));
+    }
+  };
 
   return (
     <div className="quest-card">
@@ -48,7 +59,7 @@ function MyQuestCardItem({reserveQuest}: MyQuestCardItemProps): JSX.Element {
             </svg>{level}
           </li>
         </ul>
-        <button className="btn btn--accent btn--secondary quest-card__btn" type="button">Отменить</button>
+        <button className="btn btn--accent btn--secondary quest-card__btn" type="button" onClick={handleQuestCancelClick}>Отменить</button>
       </div>
     </div>
   );

@@ -45,7 +45,9 @@ function App(): JSX.Element {
           <Route
             path={`${AppRoute.QuestId}/${AppRoute.Booking}`}
             element={
-              <BookingPage />
+              <PrivateRoute authorizationStatus={authorizationStatus}>
+                <BookingPage />
+              </PrivateRoute>
             }
           />
         </Route>
