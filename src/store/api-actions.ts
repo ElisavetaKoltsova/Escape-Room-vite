@@ -73,10 +73,11 @@ export const postReserveQuest = createAsyncThunk<void, ReserveQuestData, {
   extra: AxiosInstance;
 }>(
   APIAction.POST_RESERVE_QUEST,
-  async ({placeId, date, time, contactPerson, phone, withChildren, peopleCount, currentId}, {extra: api}) => {
+  async ({placeId, date, time, contactPerson, phone, withChildren, peopleCount, currentId}, {extra: api, dispatch}) => {
     await api.post(`${APIRoute.Quests}/${currentId}${APIRoute.Booking}`, {
       placeId, date, time, contactPerson, phone, withChildren, peopleCount
     });
+    dispatch(redirectToRoute(AppRoute.MyQuests));
   }
 );
 

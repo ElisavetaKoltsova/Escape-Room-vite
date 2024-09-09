@@ -11,6 +11,7 @@ import BookingPage from '../../pages/booking-page/booking-page';
 import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import PrivateRoute from '../private-route/private-route';
+import PublicRoute from '../public-route/public-route';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -27,7 +28,9 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Login}
           element={
-            <LoginPage />
+            <PublicRoute authorizationStatus={authorizationStatus}>
+              <LoginPage />
+            </PublicRoute>
           }
         />
         <Route

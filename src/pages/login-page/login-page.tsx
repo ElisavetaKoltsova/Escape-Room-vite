@@ -4,12 +4,6 @@ import Header from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
 
 function LoginPage(): JSX.Element {
-  // const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  // const navigate = useNavigate();
-  // if (authorizationStatus === AuthorizationStatus.Auth) {
-  //   navigate(AppRoute.Root);
-  // }
-
   return (
     <div className="wrapper">
       <Header activeMenuItem={AppRoute.Login} />
