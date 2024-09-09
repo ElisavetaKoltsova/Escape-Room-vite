@@ -1,17 +1,14 @@
 import Footer from '../../components/footer/footer';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import Header from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
-import { useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { useNavigate } from 'react-router-dom';
 
 function LoginPage(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const navigate = useNavigate();
-  if (authorizationStatus === AuthorizationStatus.Auth) {
-    navigate(AppRoute.Root);
-  }
+  // const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  // const navigate = useNavigate();
+  // if (authorizationStatus === AuthorizationStatus.Auth) {
+  //   navigate(AppRoute.Root);
+  // }
 
   return (
     <div className="wrapper">

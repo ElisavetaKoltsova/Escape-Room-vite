@@ -30,6 +30,11 @@ export const Coordinates = {
   }
 };
 
+export enum QuestDay {
+  Today = 'today',
+  Tomorrow = 'tomorrow'
+}
+
 export enum AppRoute {
   Root = '/',
   Quest = '/quest',
@@ -44,7 +49,8 @@ export enum APIRoute {
   Quests = '/quest',
   Login = '/login',
   Logout = '/logout',
-  Booking = '/booking'
+  Booking = '/booking',
+  Reservation = '/reservation'
 }
 
 export enum NameSpace {

@@ -1,4 +1,4 @@
-import { Level, Type } from '../const';
+import { Level, QuestDay, Type } from '../const';
 import { Coordinate } from './coordinate';
 
 export type Quest = {
@@ -35,5 +35,17 @@ export type BookingQuest = {
   location: Coordinate;
   slots: Slots;
 };
+
+export type ReserveQuest = {
+  date: QuestDay;
+  time: string;
+  contactPerson: string;
+  phone: string;
+  withChildren: boolean;
+  peopleCount: number;
+  id: string;
+  location: Coordinate;
+  quest: Quest;
+}
 
 export type QuestClick = (quest: Quest) => void;
