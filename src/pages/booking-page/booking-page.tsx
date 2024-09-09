@@ -39,8 +39,7 @@ function BookingPage(): JSX.Element {
 
   if (bookingQuests.length !== 0 && currentQuest && selectedBookingQuest) {
     const {
-      location,
-      slots
+      location
     } = selectedBookingQuest;
 
     return (
@@ -69,7 +68,7 @@ function BookingPage(): JSX.Element {
                 <p className="booking-map__address">Вы&nbsp;выбрали: {location.address}</p>
               </div>
             </div>
-            <BookingForm slots={slots}/>
+            <BookingForm currentQuest={currentQuest} selectedBookingQuest={selectedBookingQuest}/>
           </div>
         </main>
         <Footer />

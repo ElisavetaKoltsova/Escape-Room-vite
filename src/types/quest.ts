@@ -36,14 +36,22 @@ export type BookingQuest = {
   slots: Slots;
 };
 
-export type ReserveQuest = {
+export type ReserveQuestPlace = {
+  currentId: string;
+  placeId: string;
+}
+
+export type ReserveQuestData = ReserveQuestPlace & {
   date: QuestDay;
   time: string;
   contactPerson: string;
   phone: string;
   withChildren: boolean;
   peopleCount: number;
-  id: string;
+  id?: string;
+}
+
+export type ReserveQuest = ReserveQuestData & {
   location: Coordinate;
   quest: Quest;
 }

@@ -3,15 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
-
-const MAX_PASSWORD_LENGTH = 15;
-const MIN_PASSWORD_LENGTH = 3;
-
-const ErrorMassage = {
-  MAX_LENGTH_ERROR: 'Длина пароля не может быть больше 15ти символов',
-  MIN_LENGTH_ERROR: 'Длина пароля не может быть меньше 3ёх символов',
-  REQUIRED: 'Поле обязательное'
-};
+import { ErrorMassage, InputFormRule } from '../../const';
 
 function LoginForm(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -52,8 +44,8 @@ function LoginForm(): JSX.Element {
               required
               {...register('password', {
                 required: { value: true, message: ErrorMassage.REQUIRED },
-                minLength: { value: MIN_PASSWORD_LENGTH, message: ErrorMassage.MIN_LENGTH_ERROR },
-                maxLength: { value: MAX_PASSWORD_LENGTH, message: ErrorMassage.MAX_LENGTH_ERROR }
+                minLength: { value:InputFormRule.MIN_PASSWORD_LENGTH, message: ErrorMassage.PASSWORD_LENGTH },
+                maxLength: { value: InputFormRule.MAX_PASSWORD_LENGTH, message: ErrorMassage.PASSWORD_LENGTH }
               })}
             />
             {errors.password && <span>{errors.password.message}</span>}

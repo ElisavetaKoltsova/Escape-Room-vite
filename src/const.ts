@@ -1,3 +1,17 @@
+
+export const InputFormRule = {
+  MAX_PASSWORD_LENGTH: 15,
+  MIN_PASSWORD_LENGTH: 3,
+  MAX_NAME_LENGTH: 15,
+  MIN_NAME_LENGTH: 1
+};
+
+export const ErrorMassage = {
+  PASSWORD_LENGTH: 'Длина пароля может быть от 3ёх до 15ти символов',
+  NAME_LENGTH: 'Длина имени должна быть от 1ого до 15ти символов ',
+  REQUIRED: 'Поле обязательное'
+};
+
 export const UrlMarkers = {
   URL_MARKER_DEFAULT: '/public/img/svg/pin-default.svg',
   URL_MARKER_CURRENT: '/public/img/svg/pin-active.svg'

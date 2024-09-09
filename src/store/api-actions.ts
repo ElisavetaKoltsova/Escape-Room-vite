@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BookingQuest, CurrentQuest, Quest, ReserveQuest } from '../types/quest';
+import { BookingQuest, CurrentQuest, Quest, ReserveQuest, ReserveQuestData } from '../types/quest';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../const';
@@ -13,6 +13,7 @@ export const APIAction = {
   FETCH_CURRENT_QUEST: 'FETCH_CURRENT_QUEST',
   FETCH_BOOKING_QUEST: 'FETCH_BOOKING_QUEST',
   FETCH_RESERVATION_QUESTS: 'FETCH_RESERVATION_QUESTS',
+  POST_RESERVE_QUEST: 'POST_RESERVE_QUEST',
   CHECK_AUTH: 'CHECK_AUTH',
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT'
@@ -63,6 +64,19 @@ export const fetchReservationQuests = createAsyncThunk<ReserveQuest[], undefined
   async (_arg, {extra: api}) => {
     const { data } = await api.get<ReserveQuest[]>(APIRoute.Reservation);
     return data;
+  }
+);
+
+export const postReserveQuest = createAsyncThunk<void, ReserveQuestData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  APIAction.POST_RESERVE_QUEST,
+  async ({placeId, date, time, contactPerson, phone, withChildren, peopleCount, currentId}, {extra: api}) => {
+    await api.post(`${APIRoute.Quests}/${currentId}${APIRoute.Booking}`, {
+      placeId, date, time, contactPerson, phone, withChildren, peopleCount
+    });
   }
 );
 
