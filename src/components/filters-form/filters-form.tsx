@@ -1,19 +1,24 @@
+import { useEffect } from 'react';
 import { Filter, Level, Type } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeQuestLevelFilter, changeQuestThemeFilter } from '../../store/quests-data/quests-data';
+import { changeQuestLevelFilter, changeQuestThemeFilter, resetFilters } from '../../store/quests-data/quests-data';
 import { getCurrentLevelFilter, getCurrentThemeFilter } from '../../store/quests-data/selector';
 
 function FiltersForm(): JSX.Element {
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    dispatch(resetFilters());
+  }, [dispatch]);
+
   const currentThemeFilter = useAppSelector(getCurrentThemeFilter);
   const currentLevelFilter = useAppSelector(getCurrentLevelFilter);
 
-  const handleFilterThemeChange = (theme: Type) => {
+  const handleFilterThemeInputChange = (theme: Type) => {
     dispatch(changeQuestThemeFilter(theme));
   };
 
-  const handleFilterLevelChange = (level: Level) => {
+  const handleFilterLevelInputChange = (level: Level) => {
     dispatch(changeQuestLevelFilter(level));
   };
 
@@ -28,8 +33,8 @@ function FiltersForm(): JSX.Element {
                 type="radio"
                 name="type"
                 id={theme[0]}
-                defaultChecked={currentThemeFilter === theme[0]}
-                onChange={() => handleFilterThemeChange(theme[0] as Type)}
+                checked={currentThemeFilter === theme[0]}
+                onChange={() => handleFilterThemeInputChange(theme[0] as Type)}
               />
               <label className="filter__label" htmlFor={theme[0]}>
                 <svg className="filter__icon" width="26" height="30" aria-hidden="true">
@@ -49,8 +54,8 @@ function FiltersForm(): JSX.Element {
                 type="radio"
                 name="level"
                 id={level[0]}
-                defaultChecked={currentLevelFilter === level[0]}
-                onChange={() => handleFilterLevelChange(level[0] as Level)}
+                checked={currentLevelFilter === level[0]}
+                onChange={() => handleFilterLevelInputChange(level[0] as Level)}
               />
               <label className="filter__label" htmlFor={level[0]}><span className="filter__label-text">{level[1]}</span>
               </label>

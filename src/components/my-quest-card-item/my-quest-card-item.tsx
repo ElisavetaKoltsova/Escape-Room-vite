@@ -32,7 +32,7 @@ function MyQuestCardItem({reserveQuest}: MyQuestCardItemProps): JSX.Element {
     address
   } = location;
 
-  const handleQuestCancelClick = () => {
+  const handleQuestCancelButtonClick = () => {
     if (id) {
       dispatch(deleteReserveQuest(id));
     }
@@ -63,7 +63,7 @@ function MyQuestCardItem({reserveQuest}: MyQuestCardItemProps): JSX.Element {
             </svg>{level}
           </li>
         </ul>
-        <button className="btn btn--accent btn--secondary quest-card__btn" type="button" onClick={handleQuestCancelClick}>Отменить</button>
+        <button className="btn btn--accent btn--secondary quest-card__btn" type="button" onClick={handleQuestCancelButtonClick}>Отменить</button>
       </div>
     </div>
   );

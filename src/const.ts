@@ -1,4 +1,12 @@
 
+export const MainCoordinate = {
+  address: 'Main Address',
+  coords: [
+    59.968322,
+    30.317359
+  ]
+};
+
 export const InputFormRule = {
   MAX_PASSWORD_LENGTH: 15,
   MIN_PASSWORD_LENGTH: 3,
@@ -15,7 +23,7 @@ export const ErrorMassage = {
   REQUIRED: 'Поле обязательное'
 };
 
-export const UrlMarkers = {
+export const UrlMarker = {
   URL_MARKER_DEFAULT: '/public/img/svg/pin-default.svg',
   URL_MARKER_CURRENT: '/public/img/svg/pin-active.svg'
 };
@@ -34,16 +42,6 @@ export const Filter = {
     'easy': 'Лёгкий',
     'medium': 'Средний',
     'hard': 'Сложный'
-  }
-};
-
-export const Coordinates = {
-  MAIN_ADDRESS: {
-    address: 'Main Address',
-    coords: [
-      59.968322,
-      30.317359
-    ]
   }
 };
 

@@ -37,6 +37,10 @@ export const questsData = createSlice({
       if (state.questThemeFilter !== Type.All) {
         state.filteredQuests = filterTheme[state.questThemeFilter]([...state.filteredQuests]);
       }
+    },
+    resetFilters: (state) => {
+      state.questThemeFilter = Type.All;
+      state.questLevelFilter = Level.Any;
     }
   },
   extraReducers(builder) {
@@ -76,4 +80,4 @@ export const questsData = createSlice({
   }
 });
 
-export const { setSelectedQuest, changeQuestLevelFilter, changeQuestThemeFilter } = questsData.actions;
+export const { setSelectedQuest, changeQuestLevelFilter, changeQuestThemeFilter, resetFilters } = questsData.actions;

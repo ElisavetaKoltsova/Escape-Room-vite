@@ -3,7 +3,7 @@ import { Coordinate } from '../../types/coordinate';
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
 import { Icon, LatLng, layerGroup, Marker } from 'leaflet';
-import { UrlMarkers } from '../../const';
+import { UrlMarker } from '../../const';
 import { BookingQuest } from '../../types/quest';
 import { useAppDispatch } from '../../hooks';
 import { setSelectedQuest } from '../../store/quests-data/quests-data';
@@ -26,11 +26,11 @@ function Map({coordinate, places, selectedPlace, zoom}: MapProps): JSX.Element {
   const markers: Marker[] = [];
 
   const defaultCustomIcon = new Icon({
-    iconUrl: UrlMarkers.URL_MARKER_DEFAULT
+    iconUrl: UrlMarker.URL_MARKER_DEFAULT
   });
 
   const currentCustomIcon = new Icon({
-    iconUrl: UrlMarkers.URL_MARKER_CURRENT,
+    iconUrl: UrlMarker.URL_MARKER_CURRENT,
   });
 
   useEffect(() => {
@@ -75,11 +75,12 @@ function Map({coordinate, places, selectedPlace, zoom}: MapProps): JSX.Element {
         });
 
         marker
-          .setIcon(defaultCustomIcon)
+          .setIcon(currentCustomIcon)
           .addTo(map);
       }
     }
-  }, [map, coordinate, zoom, places, selectedPlace, markers]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [map, coordinate, zoom, places, selectedPlace, dispatch]);
 
   return (
     <div

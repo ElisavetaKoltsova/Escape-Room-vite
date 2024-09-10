@@ -1,8 +1,9 @@
 import Footer from '../../components/footer/footer';
-import { AppRoute, Coordinates } from '../../const';
+import { AppRoute, MainCoordinate } from '../../const';
 import Map from '../../components/map/map';
 import Header from '../../components/header/header';
 import { Coordinate } from '../../types/coordinate';
+import { Link } from 'react-router-dom';
 
 const MAIN_ZOOM = 40;
 
@@ -38,20 +39,20 @@ function ContactsPage(): JSX.Element {
               <div className="contacts__item">
                 <dt className="contacts__dt">Телефон</dt>
                 <dd className="contacts__dd">
-                  <a className="link" href="tel:88003335599">8 (000) 111-11-11</a>
+                  <Link className="link" to="tel:88003335599">8 (000) 111-11-11</Link>
                 </dd>
               </div>
               <div className="contacts__item">
                 <dt className="contacts__dt">E&ndash;mail</dt>
                 <dd className="contacts__dd">
-                  <a className="link" href="mailto:info@escape-room.ru">info@escape-room.ru</a>
+                  <Link className="link" to="mailto:info@escape-room.ru">info@escape-room.ru</Link>
                 </dd>
               </div>
             </dl>
             <div className="contacts__map">
               <div className="map">
                 <div className="map__container">
-                  <Map coordinate={Coordinates.MAIN_ADDRESS as Coordinate} zoom={MAIN_ZOOM}/>
+                  <Map coordinate={MainCoordinate as Coordinate} zoom={MAIN_ZOOM}/>
                 </div>
               </div>
             </div>

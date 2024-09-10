@@ -25,7 +25,7 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
     dispatch(postReserveQuest(data));
   };
 
-  const handleDateChange = (evt: FormEvent<HTMLInputElement>) => {
+  const handleDateInputChange = (evt: FormEvent<HTMLInputElement>) => {
     const type = evt.currentTarget.id;
     const date = type.includes('today') ? QuestDay.Today : QuestDay.Tomorrow;
     const time = type.replace(date, '');
@@ -45,7 +45,7 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
     setValue('peopleCount', Number(value));
   };
 
-  const checkPeopleCountInput = (value: number) => {
+  const checkCorrectnessOfPeopleCount = (value: number) => {
     if (value >= currentQuest.peopleMinMax[0] && value <= currentQuest.peopleMinMax[1]) {
       return true;
     }
@@ -89,7 +89,7 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
                     required value='today'
                     disabled={!isAvailable}
                     {...register('date')}
-                    onChange={handleDateChange}
+                    onChange={handleDateInputChange}
                   />
                   <span className="custom-radio__label">{time}</span>
                 </label>
@@ -105,7 +105,7 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
                     required value='tomorrow'
                     disabled={!isAvailable}
                     {...register('date')}
-                    onChange={handleDateChange}
+                    onChange={handleDateInputChange}
                   />
                   <span className="custom-radio__label">{time}</span>
                 </label>
@@ -155,7 +155,7 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
               {...register('peopleCount', {
                 required: { value: true, message: ErrorMassage.REQUIRED },
                 valueAsNumber: true,
-                validate: checkPeopleCountInput
+                validate: checkCorrectnessOfPeopleCount
               })}
             />
             {errors.peopleCount && <p>{errors.peopleCount.message}</p>}
