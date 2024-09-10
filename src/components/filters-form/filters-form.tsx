@@ -1,14 +1,36 @@
-import { Filters } from '../../const';
+import { Filter, Level, Type } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { changeQuestLevelFilter, changeQuestThemeFilter } from '../../store/quests-data/quests-data';
+import { getCurrentLevelFilter, getCurrentThemeFilter } from '../../store/quests-data/selector';
 
 function FiltersForm(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const currentThemeFilter = useAppSelector(getCurrentThemeFilter);
+  const currentLevelFilter = useAppSelector(getCurrentLevelFilter);
+
+  const handleFilterThemeChange = (theme: Type) => {
+    dispatch(changeQuestThemeFilter(theme));
+  };
+
+  const handleFilterLevelChange = (level: Level) => {
+    dispatch(changeQuestLevelFilter(level));
+  };
+
   return (
     <form className="filter" action="#" method="get">
       <fieldset className="filter__section">
         <legend className="visually-hidden">Тематика</legend>
         <ul className="filter__list">
-          {Object.entries(Filters.THEMES).map((theme) => (
+          {Object.entries(Filter.THEMES).map((theme) => (
             <li className="filter__item" key={theme[0] + theme[1]}>
-              <input type="radio" name="type" id={theme[0]} defaultChecked />
+              <input
+                type="radio"
+                name="type"
+                id={theme[0]}
+                defaultChecked={currentThemeFilter === theme[0]}
+                onChange={() => handleFilterThemeChange(theme[0] as Type)}
+              />
               <label className="filter__label" htmlFor={theme[0]}>
                 <svg className="filter__icon" width="26" height="30" aria-hidden="true">
                   <use xlinkHref={`#icon-${theme[0]}`}></use>
@@ -21,9 +43,15 @@ function FiltersForm(): JSX.Element {
       <fieldset className="filter__section">
         <legend className="visually-hidden">Сложность</legend>
         <ul className="filter__list">
-          {Object.entries(Filters.LEVELS).map((level) => (
+          {Object.entries(Filter.LEVELS).map((level) => (
             <li className="filter__item" key={level[0] + level[1]}>
-              <input type="radio" name="level" id={level[0]} defaultChecked />
+              <input
+                type="radio"
+                name="level"
+                id={level[0]}
+                defaultChecked={currentLevelFilter === level[0]}
+                onChange={() => handleFilterLevelChange(level[0] as Level)}
+              />
               <label className="filter__label" htmlFor={level[0]}><span className="filter__label-text">{level[1]}</span>
               </label>
             </li>

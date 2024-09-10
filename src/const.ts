@@ -17,9 +17,9 @@ export const UrlMarkers = {
   URL_MARKER_CURRENT: '/public/img/svg/pin-active.svg'
 };
 
-export const Filters = {
+export const Filter = {
   THEMES: {
-    'all-quests': 'Все квесты',
+    'all': 'Все квесты',
     'adventure': 'Приключения',
     'horror': 'Ужасы',
     'mystic': 'Мистика',
@@ -29,7 +29,7 @@ export const Filters = {
   LEVELS: {
     'any': 'Любой',
     'easy': 'Лёгкий',
-    'middle': 'Средний',
+    'medium': 'Средний',
     'hard': 'Сложный'
   }
 };
@@ -79,12 +79,14 @@ export enum AuthorizationStatus {
 }
 
 export enum Level {
+  Any = 'any',
   Easy = 'easy',
   Medium = 'medium',
   Hard = 'hard'
 }
 
 export enum Type {
+  All = 'all',
   Adventure = 'adventure',
   Horror = 'horror',
   Mystic = 'mystic',

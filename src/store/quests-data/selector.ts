@@ -12,5 +12,12 @@ export const getSelectedBookingQuest = (state: Pick<State, NameSpace.Quests>) =>
 export const getReservationQuests = (state: Pick<State, NameSpace.Quests>) =>
   state[NameSpace.Quests].reservationQuests;
 
+export const getCurrentThemeFilter = (state: Pick<State, NameSpace.Quests>) =>
+  state[NameSpace.Quests].questThemeFilter;
+export const getCurrentLevelFilter = (state: Pick<State, NameSpace.Quests>) =>
+  state[NameSpace.Quests].questLevelFilter;
+export const getFilteredQuests = (state: Pick<State, NameSpace.Quests>) =>
+  state[NameSpace.Quests].filteredQuests;
+
 export const getQuestsDataLoadingStatus = (state: Pick<State, NameSpace.Quests>) =>
   state[NameSpace.Quests].isQuestsDataLoading;

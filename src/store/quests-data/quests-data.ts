@@ -1,15 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { QuestsData } from '../../types/state';
-import { NameSpace } from '../../const';
+import { Level, NameSpace, Type } from '../../const';
 import { deleteReserveQuest, fetchBookingQuestAction, fetchCurrentQuestAction, fetchQuestsAction, fetchReservationQuests } from '../api-actions';
 import { BookingQuest } from '../../types/quest';
+import { filterLevel, filterTheme } from '../../utils/filter';
 
 const initialState: QuestsData = {
   quests: [],
+  filteredQuests: [],
   currentQuest: null,
   bookingQuests: [],
   selectedBookingQuest: undefined,
   reservationQuests: [],
+  questThemeFilter: Type.All,
+  questLevelFilter: Level.Any,
   isQuestsDataLoading: false
 };
 
@@ -19,6 +23,20 @@ export const questsData = createSlice({
   reducers: {
     setSelectedQuest: (state, action: PayloadAction<BookingQuest>) => {
       state.selectedBookingQuest = action.payload;
+    },
+    changeQuestThemeFilter: (state, action: PayloadAction<Type>) => {
+      state.questThemeFilter = action.payload;
+      state.filteredQuests = filterTheme[state.questThemeFilter]([...state.quests]);
+      if (state.questLevelFilter !== Level.Any) {
+        state.filteredQuests = filterLevel[state.questLevelFilter]([...state.filteredQuests]);
+      }
+    },
+    changeQuestLevelFilter: (state, action: PayloadAction<Level>) => {
+      state.questLevelFilter = action.payload;
+      state.filteredQuests = filterLevel[action.payload]([...state.quests]);
+      if (state.questThemeFilter !== Type.All) {
+        state.filteredQuests = filterTheme[state.questThemeFilter]([...state.filteredQuests]);
+      }
     }
   },
   extraReducers(builder) {
@@ -58,4 +76,4 @@ export const questsData = createSlice({
   }
 });
 
-export const { setSelectedQuest } = questsData.actions;
+export const { setSelectedQuest, changeQuestLevelFilter, changeQuestThemeFilter } = questsData.actions;
