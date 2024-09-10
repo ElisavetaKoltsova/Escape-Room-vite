@@ -114,13 +114,15 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
               type="text"
               id="name"
               placeholder="Имя"
-              required pattern="[А-Яа-яЁёA-Za-z'- ]{1,}"
+              required
+              // pattern="[А-Яа-яЁёA-Za-z'- ]{1,}"
               {...register('contactPerson', {
                 required: {value: true, message: ErrorMassage.REQUIRED},
                 minLength: {value: InputFormRule.MIN_NAME_LENGTH, message: ErrorMassage.NAME_LENGTH},
                 maxLength: {value: InputFormRule.MAX_NAME_LENGTH, message: ErrorMassage.NAME_LENGTH}
               })}
             />
+            {errors.contactPerson && <p>{errors.contactPerson.message}</p>}
           </div>
           <div className="custom-input booking-form__input">
             <label className="custom-input__label" htmlFor="tel">Контактный телефон</label>
@@ -128,9 +130,11 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
               type="tel"
               id="tel"
               placeholder="Телефон"
-              required pattern="([\+]*[7-8]{1}\s?[\(]*9[0-9]{2}[\)]*\s?\d{3}[-]*\d{2}[-]*\d{2})"
+              required
+              // pattern="([\+]*[7-8]{1}\s?[\(]*9[0-9]{2}[\)]*\s?\d{3}[-]*\d{2}[-]*\d{2})"
               {...register('phone')}
             />
+            {errors.phone && <p>{errors.phone.message}</p>}
           </div>
           <div className="custom-input booking-form__input">
             <label className="custom-input__label" htmlFor="person">Количество участников</label>

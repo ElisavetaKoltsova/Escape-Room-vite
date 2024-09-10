@@ -9,15 +9,15 @@ import { redirectToRoute } from './action';
 import { UserData } from '../types/user-data';
 
 export const APIAction = {
-  FETCH_QUESTS: 'FETCH_QUESTS',
-  FETCH_CURRENT_QUEST: 'FETCH_CURRENT_QUEST',
-  FETCH_BOOKING_QUEST: 'FETCH_BOOKING_QUEST',
-  FETCH_RESERVATION_QUESTS: 'FETCH_RESERVATION_QUESTS',
-  POST_RESERVE_QUEST: 'POST_RESERVE_QUEST',
-  DELETE_RESERVE_QUEST: 'DELETE_RESERVE_QUEST',
-  CHECK_AUTH: 'CHECK_AUTH',
-  LOGIN: 'LOGIN',
-  LOGOUT: 'LOGOUT'
+  FETCH_QUESTS: 'quests/getQuests',
+  FETCH_CURRENT_QUEST: 'quests/getCurrentQuest',
+  FETCH_BOOKING_QUEST: 'quests/getBookingQuest',
+  FETCH_RESERVATION_QUESTS: 'quests/getReservationQuests',
+  POST_RESERVE_QUEST: 'quest/postReserveQuest',
+  DELETE_RESERVE_QUEST: 'quest/deleteReserveQuest',
+  CHECK_AUTH: 'user/checkAuth',
+  LOGIN: 'user/login',
+  LOGOUT: 'user/logout'
 };
 
 export const fetchQuestsAction = createAsyncThunk<Quest[], undefined, {

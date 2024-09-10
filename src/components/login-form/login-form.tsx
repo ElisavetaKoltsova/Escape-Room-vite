@@ -14,6 +14,25 @@ function LoginForm(): JSX.Element {
     dispatch(loginAction(data));
   };
 
+  const checkCorrectnessOfEmail = (value: string) => {
+    const emailReg = /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(?:aero|arpa|asia|biz|cat|com|ru|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/;
+    const isEmailValid = emailReg.test(value);
+
+    return isEmailValid ? isEmailValid : ErrorMassage.EMAIL_VALIDATE;
+  };
+
+  const checkCorrectnessOfPassword = (value: string | undefined) => {
+    const letterReg = /[a-zA-Z]/;
+    const numberReg = /[0-9]/;
+
+    if (value) {
+      const isPasswordValid = numberReg.test(value) && letterReg.test(value);
+      return isPasswordValid ? isPasswordValid : ErrorMassage.PASSWORD_VALIDATE;
+    }
+
+    return 'Введите пароль';
+  };
+
   return (
     <form className="login-form"
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -29,9 +48,10 @@ function LoginForm(): JSX.Element {
               id="email"
               placeholder="Адрес электронной почты"
               required
-              {...register('email',
-                {required: {value: true, message: ErrorMassage.REQUIRED}}
-              )}
+              {...register('email',{
+                required: {value: true, message: ErrorMassage.REQUIRED},
+                validate: checkCorrectnessOfEmail
+              })}
             />
             {errors.email && <span>{errors.email.message}</span>}
           </div>
@@ -45,7 +65,8 @@ function LoginForm(): JSX.Element {
               {...register('password', {
                 required: { value: true, message: ErrorMassage.REQUIRED },
                 minLength: { value:InputFormRule.MIN_PASSWORD_LENGTH, message: ErrorMassage.PASSWORD_LENGTH },
-                maxLength: { value: InputFormRule.MAX_PASSWORD_LENGTH, message: ErrorMassage.PASSWORD_LENGTH }
+                maxLength: { value: InputFormRule.MAX_PASSWORD_LENGTH, message: ErrorMassage.PASSWORD_LENGTH },
+                validate: checkCorrectnessOfPassword
               })}
             />
             {errors.password && <span>{errors.password.message}</span>}

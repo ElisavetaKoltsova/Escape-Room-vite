@@ -8,6 +8,8 @@ export const InputFormRule = {
 
 export const ErrorMassage = {
   PASSWORD_LENGTH: 'Длина пароля может быть от 3ёх до 15ти символов',
+  PASSWORD_VALIDATE: 'В пароле должны быть хотя бы одна цифра и одна буква',
+  EMAIL_VALIDATE: 'Введите корректный адрес электронной почты',
   NAME_LENGTH: 'Длина имени должна быть от 1ого до 15ти символов ',
   REQUIRED: 'Поле обязательное'
 };
