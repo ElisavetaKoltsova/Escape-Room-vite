@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosInstance, AxiosError, AxiosRequestConfig } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import { getToken } from './token';
-// import { useAppDispatch } from '../hooks';
+import { processErrorHandler } from './process-error-handler';
 
 const BACKEND_URL = 'https://grading.design.htmlacademy.pro/v1/escape-room/';
 const REQUEST_TIMEOUT = 5000;
@@ -40,11 +40,10 @@ export const createAPI = (): AxiosInstance => {
   api.interceptors.response.use(
     (response) => response,
     (error: AxiosError<DetailMessageType>) => {
-      //const dispatch = useAppDispatch();
       if (error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
-        console.log(detailMessage);
-        //processErrorHandle(detailMessage.message, dispatch);
+
+        processErrorHandler(detailMessage.message);
       }
 
       throw error;

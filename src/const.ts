@@ -69,7 +69,8 @@ export enum APIRoute {
 
 export enum NameSpace {
   Quests = 'QUESTS',
-  User = 'USER'
+  User = 'USER',
+  Errors = 'ERRORS'
 }
 
 export enum AuthorizationStatus {

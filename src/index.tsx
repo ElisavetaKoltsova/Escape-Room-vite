@@ -6,6 +6,7 @@ import { checkAuthAction, fetchQuestsAction } from './store/api-actions';
 import { Provider } from 'react-redux';
 import HistoryRouter from './components/history-router/history-router';
 import browserHistory from './browser-history';
+import ErrorMessage from './components/error-message/error-message';
 
 store.dispatch(checkAuthAction());
 store.dispatch(fetchQuestsAction());
@@ -17,6 +18,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ErrorMessage />
       <HistoryRouter history={browserHistory}>
         <App />
       </HistoryRouter>
