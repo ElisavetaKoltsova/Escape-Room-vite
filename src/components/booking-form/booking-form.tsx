@@ -53,6 +53,13 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
     return `Количество участников должно быть от ${currentQuest.peopleMinMax[0]} до ${currentQuest.peopleMinMax[1]}`;
   };
 
+  const checkCorrectnessOfPhone = (value: string) => {
+    const phoneReg = /[+]*[7-8]{1}\s?[(]*9[0-9]{2}[)]*\s?\d{3}[-]*\d{2}[-]*\d{2}/;
+    const isPhoneValid = phoneReg.test(value);
+
+    return isPhoneValid ? isPhoneValid : ErrorMassage.PHONE_VALIDATE;
+  };
+
 
   if (currentId) {
     register('placeId');
@@ -115,7 +122,6 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
               id="name"
               placeholder="Имя"
               required
-              // pattern="[А-Яа-яЁёA-Za-z'- ]{1,}"
               {...register('contactPerson', {
                 required: {value: true, message: ErrorMassage.REQUIRED},
                 minLength: {value: InputFormRule.MIN_NAME_LENGTH, message: ErrorMassage.NAME_LENGTH},
@@ -131,8 +137,10 @@ function BookingForm({currentQuest, selectedBookingQuest}: BookingFormProps): JS
               id="tel"
               placeholder="Телефон"
               required
-              // pattern="([\+]*[7-8]{1}\s?[\(]*9[0-9]{2}[\)]*\s?\d{3}[-]*\d{2}[-]*\d{2})"
-              {...register('phone')}
+              {...register('phone', {
+                required: {value: true, message: ErrorMassage.REQUIRED},
+                validate: checkCorrectnessOfPhone
+              })}
             />
             {errors.phone && <p>{errors.phone.message}</p>}
           </div>

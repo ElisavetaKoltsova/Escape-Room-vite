@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import { deleteReserveQuest } from '../../store/api-actions';
 import { ReserveQuest } from '../../types/quest';
+import { AppRoute } from '../../const';
 
 type MyQuestCardItemProps = {
   reserveQuest: ReserveQuest;
@@ -22,7 +24,8 @@ function MyQuestCardItem({reserveQuest}: MyQuestCardItemProps): JSX.Element {
     previewImg,
     previewImgWebp,
     title,
-    level
+    level,
+    id: questId
   } = quest;
 
   const {
@@ -44,7 +47,8 @@ function MyQuestCardItem({reserveQuest}: MyQuestCardItemProps): JSX.Element {
         </picture>
       </div>
       <div className="quest-card__content">
-        <div className="quest-card__info-wrapper"><a className="quest-card__link" href="quest.html">{title}</a>
+        <div className="quest-card__info-wrapper">
+          <Link className="quest-card__link" to={`${AppRoute.Quest}/${questId}`}>{title}</Link>
           <span className="quest-card__info">[{date === 'today' ? 'сегодня' : 'завтра'},&nbsp;{time}. {address}]</span>
         </div>
         <ul className="tags quest-card__tags">
